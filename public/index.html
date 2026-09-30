@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Jev plays Snake</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header>
+    <h1>Jev plays Snake</h1>
+    <span id="mode" class="badge">…</span>
+    <span id="calls" class="muted"></span>
+  </header>
+
+  <main>
+    <section class="board">
+      <canvas id="canvas" width="480" height="480"></canvas>
+      <div id="status" class="status"></div>
+
+      <h2>Move history</h2>
+      <div id="historyScroll" class="history">
+        <table>
+          <thead>
+            <tr><th>Step</th><th>Up</th><th>Down</th><th>Left</th><th>Right</th><th>Choice</th><th>Conf.</th><th>Via</th></tr>
+          </thead>
+          <tbody id="history"></tbody>
+        </table>
+      </div>
+      <p class="muted hint">✕ fatal, not offered · – reversal, not possible</p>
+    </section>
+
+    <section class="panel">
+      <div class="controls">
+        <label>Player
+          <select id="player">
+            <option value="jev">Jev (decision model)</option>
+            <option value="heuristic">Heuristic bot</option>
+            <option value="random">Random</option>
+          </select>
+        </label>
+        <label>Board
+          <select id="size">
+            <option value="8">8 × 8</option>
+            <option value="10">10 × 10</option>
+            <option value="12" selected>12 × 12</option>
+          </select>
+        </label>
+        <label>Seed <input id="seed" type="number" value="1" min="1"></label>
+        <label>Delay <input id="delay" type="range" min="0" max="600" step="20" value="120"> <span id="delayLabel">120 ms</span></label>
+        <label><input id="heatmap" type="checkbox" checked> Probabilities on board</label>
+        <div class="buttons">
+          <button id="play">Play</button>
+          <button id="stepBtn">Step</button>
+          <button id="reset">New game</button>
+        </div>
+      </div>
+
+      <dl class="stats">
+        <div><dt>Score</dt><dd id="score">0</dd></div>
+        <div><dt>Length</dt><dd id="length">3</dd></div>
+        <div><dt>Steps</dt><dd id="steps">0</dd></div>
+        <div><dt>Model calls</dt><dd id="gameCalls">0</dd></div>
+        <div><dt>Mean latency</dt><dd id="latency">–</dd></div>
+        <div><dt>Fallbacks</dt><dd id="fallbacks">0</dd></div>
+      </dl>
+
+      <h2>Last decision <span id="source" class="muted"></span></h2>
+      <ol id="options" class="options"></ol>
+      <p id="error" class="error" hidden></p>
+    </section>
+  </main>
+
+  <script type="module" src="/main.js"></script>
+</body>
+</html>

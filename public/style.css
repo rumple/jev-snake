@@ -1,0 +1,80 @@
+:root {
+  color-scheme: dark;
+  --bg: #0f1216;
+  --panel: #171b21;
+  --line: #262c35;
+  --text: #e6e9ee;
+  --muted: #8a93a1;
+  --accent: #5ad17f;
+  --warn: #f2b84b;
+  --bad: #ef6a6a;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: var(--bg);
+  color: var(--text);
+  font: 14px/1.45 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap; }
+h1 { font-size: 18px; margin: 0; }
+h2 { font-size: 13px; margin: 18px 0 8px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+.muted { color: var(--muted); font-weight: normal; text-transform: none; letter-spacing: 0; }
+
+.badge { padding: 2px 8px; border-radius: 999px; font-size: 12px; font-weight: 600; background: var(--line); }
+.badge.mock { background: #3a3116; color: var(--warn); }
+.badge.live { background: #163a24; color: var(--accent); }
+
+main { display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start; }
+.board { flex: 0 1 480px; min-width: 0; }
+canvas { display: block; width: 100%; max-width: 480px; height: auto; border-radius: 8px; border: 1px solid var(--line); }
+.status { min-height: 22px; margin-top: 8px; color: var(--muted); }
+.status.dead { color: var(--bad); }
+.status.won { color: var(--accent); }
+
+.panel { flex: 1 1 340px; min-width: 0; background: var(--panel); border: 1px solid var(--line); border-radius: 8px; padding: 16px; }
+.controls { display: flex; flex-wrap: wrap; gap: 10px 16px; align-items: center; }
+.controls label { display: flex; align-items: center; gap: 6px; color: var(--muted); }
+.buttons { display: flex; gap: 8px; flex-basis: 100%; }
+
+select, input[type=number], button {
+  font: inherit; color: var(--text); background: var(--bg);
+  border: 1px solid var(--line); border-radius: 6px; padding: 5px 10px;
+}
+input[type=number] { width: 72px; }
+button { cursor: pointer; }
+button:hover:not(:disabled) { border-color: var(--muted); }
+button:disabled { opacity: .45; cursor: default; }
+#play { background: var(--accent); color: #08130c; border-color: var(--accent); font-weight: 600; min-width: 72px; }
+
+.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0 0; }
+.stats div { background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; }
+.stats dt { color: var(--muted); font-size: 12px; }
+.stats dd { margin: 0; font-size: 18px; font-variant-numeric: tabular-nums; }
+
+.options { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.options li { position: relative; overflow: hidden; border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; background: var(--bg); }
+.options li.chosen { border-color: var(--accent); }
+.options li.fatal { opacity: .5; }
+.options .bar { position: absolute; inset: 0 auto 0 0; background: rgba(90, 209, 127, .16); }
+.options .row { position: relative; display: flex; justify-content: space-between; gap: 8px; font-weight: 600; }
+.options .pct { font-variant-numeric: tabular-nums; }
+.options .text { position: relative; color: var(--muted); margin-top: 2px; }
+
+.error { color: var(--warn); margin: 10px 0 0; }
+
+.history { max-height: 260px; overflow-y: auto; border: 1px solid var(--line); border-radius: 8px; background: var(--panel); }
+.history table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+.history th, .history td { padding: 4px 8px; text-align: right; white-space: nowrap; }
+.history th:nth-child(n+6), .history td:nth-child(n+6) { text-align: left; }
+.history th { position: sticky; top: 0; background: var(--panel); color: var(--muted); font-size: 12px; font-weight: 600; border-bottom: 1px solid var(--line); }
+.history td { border-top: 1px solid var(--line); }
+.history td:first-child, .history td.na, .history td.via { color: var(--muted); }
+.history td.picked { color: var(--accent); font-weight: 600; }
+.history td.choice { font-weight: 600; }
+.history td.warn { color: var(--warn); }
+.hint { margin: 6px 0 0; font-size: 12px; }
