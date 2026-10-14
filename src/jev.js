@@ -1,9 +1,9 @@
 // Live TypeSafe client, plus the env-driven choice between live and mock.
 //
-// UNVERIFIED: the wire format below (endpoint, body shape, response fields) is
-// reconstructed from public Jev demo repos, not from TypeSafe's docs, and has
-// never been run against the real API. normalizeResponse() is deliberately
-// tolerant of field-name variants; expect to adjust toWire() on first contact.
+// The wire format below (endpoint, body shape, response fields) is
+// reconstructed from public Jev demo repos, not from TypeSafe's docs. It works
+// against the live API for Choice questions; other question types are untried,
+// which is why normalizeResponse() stays tolerant of field-name variants.
 
 import { createMockClient } from './mock.js';
 

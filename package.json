@@ -11,6 +11,8 @@
     "dev": "node server.js",
     "dev:mock": "JEV_MODE=mock node server.js",
     "bench": "node tools/bench.js",
+    "eval": "node evals/run.js",
+    "eval:build": "node evals/build.js",
     "test": "node --test"
   },
   "license": "MIT"
